@@ -44,9 +44,17 @@ RUN solc-select install all && SOLC_VERSION=0.8.0 solc-select versions | head -n
 RUN pip3 --no-cache-dir install slither-analyzer pyevmasm
 RUN pip3 --no-cache-dir install --upgrade manticore
 
+# These are the required changes for slither-simil
+RUN pip3 --no-cache-dir install pybind11 --user
+RUN pip3 --no-cache-dir install https://github.com/facebookresearch/fastText/archive/0.2.0.zip --user
+RUN pip3 --no-cache-dir install sklearn matplotlib --user # for plot mode
+
+
+
+
 RUN git clone --depth 1 https://github.com/trailofbits/not-so-smart-contracts.git && \
     git clone --depth 1 https://github.com/trailofbits/rattle.git && \
-    git clone --depth 1 https://github.com/crytic/building-secure-contracts
+    git clone --depth 1 https://github.com/crytic/building-secure-contracts 
 
 
 
